@@ -1,3 +1,4 @@
+import 'package:chat_app/view/chat/chat_page.dart';
 import 'package:flutter/material.dart';
 
 class PersonChat extends StatefulWidget {
@@ -8,10 +9,15 @@ class PersonChat extends StatefulWidget {
 }
 
 class _PersonChatState extends State<PersonChat> {
+
+ 
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: (){},
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatPage(),));
+      },
       onLongPress: (){},
       leading: ClipOval(child: Image.asset('assets/images/gatinho.jpg', width: 45, height: 45,),),
       title: Text("Martin Randolph", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),

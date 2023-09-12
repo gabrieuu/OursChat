@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "517083564684",
+    "project_id": "ourschat-fe5fb",
+    "storage_bucket": "ourschat-fe5fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517083564684:android:9e5becd0c3b2a81c0cc9a9",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEQQ4Wp2OrJnesLeITPgcU7RFFAEoBkaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
