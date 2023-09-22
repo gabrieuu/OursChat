@@ -1,13 +1,11 @@
+import 'package:chat_app/model/mensage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
-class MessageController extends ChangeNotifier{
+class MessageController{
   FirebaseFirestore _firestore =  FirebaseFirestore.instance;
   
-  void setData(String message){
-    _firestore.collection("message").add({
-      "text" : message
-    });
+  void setData(Mensage mensagem){
+    _firestore.collection("message").add(mensagem.toMap());
   }
 
 }

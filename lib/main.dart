@@ -1,23 +1,10 @@
-import 'package:chat_app/firebase_options.dart';
-import 'package:chat_app/view/home_page.dart';
-import 'package:chat_app/view/login_page/login_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:chat_app/auth_check.dart';
+import 'package:chat_app/configs_main.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  runApp(MyApp());
-
-  FirebaseFirestore.instance.collection("message").doc("msg1").snapshots().listen((event) { 
-    print(event.data());
-  });
+ await configurations();
+runApp(MyApp()); 
 
 }
 
@@ -26,7 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+
+    return MaterialApp(
       title: "OursChat",
       
       theme: ThemeData(
@@ -36,7 +24,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      
+      home: AuthCheck()
     );
   }
 }

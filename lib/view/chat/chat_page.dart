@@ -13,7 +13,8 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
 
   MessageController messageController = MessageController();
-
+  // falta id usuário atual
+  
   _sendMessage(text){
     messageController.setData(text);
   }
