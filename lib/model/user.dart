@@ -1,13 +1,20 @@
 class UserProfile {
-  final String email;
   final String userName;
   final String id;
-  List<UserProfile> friends = [];
 
-  UserProfile({
-    required this.userName,
-    required this.id,
-    required this.email
-  });
+  UserProfile({required this.userName, required this.id});
 
+  static fromMap(Map<String, dynamic> map) {
+    return UserProfile(
+      userName: map["username"],
+      id: map["id"],
+    );
+  }
+
+  Map<String, dynamic> toMap(){
+    return {
+      "username" : userName,
+      "id" : id
+    };
+  }
 }
