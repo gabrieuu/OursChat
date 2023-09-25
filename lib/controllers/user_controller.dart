@@ -4,23 +4,27 @@ import 'package:chat_app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+enum doc{friends, id, username}
+
 const userCollection = "users";
 class UserController extends GetxController{
   
   Rx<UserProfile?> userProfile = Rx<UserProfile?>(null); 
 
-  static Future<void> saveUsers() async{
+  var listFriends = [].obs;
+
+   Future<void> saveUsers() async{
     FirebaseFirestore db = await DBFirestore.get();
     db.collection(userCollection).doc(AuthService.to.user!.email!).set({
-      "username": AuthService.to.user!.email!,
-      "id":AuthService.to.user!.uid
+      doc.username.name : AuthService.to.user!.email!,
+      doc.id.name : AuthService.to.user!.uid
     });
   }
 
-  static updateUsername(String newUsername) async{
+   updateUsername(String newUsername) async{
     FirebaseFirestore db = await DBFirestore.get();
     db.collection(userCollection).doc(AuthService.to.user!.email!).update({
-      "username" : newUsername
+      doc.username.name : newUsername
     });
   }
 
@@ -33,9 +37,19 @@ class UserController extends GetxController{
     });
   }
 
+  getFriends() async{
+    FirebaseFirestore db = await DBFirestore.get();
+    db.collection(userCollection).doc(AuthService.to.user!.email).snapshots().listen((user) {
+      listFriends = user.data()![doc.friends.name];
+    });
+  }
+
   adicionarAmigo(UserProfile user) async{
     FirebaseFirestore db = await DBFirestore.get();
-    db.collection(userCollection).doc(AuthService.to.user!.email!).;
+    db.collection(userCollection).doc(AuthService.to.user!.email!).collection("friends").add({
+      doc.username.name : user.userName,
+      doc.id.name : user.id,
+    });
   }
 
   static UserController get to => Get.find<UserController>();

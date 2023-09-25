@@ -2,6 +2,7 @@ import 'package:chat_app/controllers/user_controller.dart';
 import 'package:chat_app/model/user.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/view/tiles/person_chat.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
-  UserProfile? user;
+  final userConttroller = Get.put(UserController());
 
 
 
@@ -45,23 +46,27 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 20,),
                   ElevatedButton(
-                    onPressed: () => UserController.to.getUserByEmail(email.text), child: const Text("Search")),
-                  Obx(() => (UserController.to.userProfile.value != null) 
+                    onPressed: () => userConttroller.getUserByEmail(email.text), child: const Text("Search")),
+                  Obx(() => (userConttroller.userProfile.value != null) 
                   ? ListTile(
                     onTap: (){
                       showDialog(context: context, builder: (_) {
                         return AlertDialog(
-                          title: Text("Deseja adicionar ${UserController.to.userProfile.value!.userName} na sua lista de amigos?",style: TextStyle(fontSize: 15),textAlign: TextAlign.center,),
+                          title: Text("Deseja adicionar ${userConttroller.userProfile.value!.userName} na sua lista de amigos?",style: TextStyle(fontSize: 15),textAlign: TextAlign.center,),
                           actions: [
-                            TextButton(onPressed: (){}, child: Text("Add"))
+                            TextButton(onPressed: (){
+                              userConttroller.adicionarAmigo(userConttroller.userProfile.value!);
+                              userConttroller.userProfile.value = null;
+                              Navigator.pop(context);
+                            }, child: Text("Add"))
                           ],
                         );
                       },);
                     },
                     onLongPress: (){},
                     leading: ClipOval(child: Image.asset('assets/images/gatinho.jpg', width: 45, height: 45,),),
-                    title: Text(UserController.to.userProfile.value!.userName, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
-                    subtitle: Text(UserController.to.userProfile.value!.id, style: TextStyle(fontSize: 12),),
+                    title: Text(userConttroller.userProfile.value!.userName, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
+                    subtitle: Text(userConttroller.userProfile.value!.id, style: TextStyle(fontSize: 12),),
                   ) 
                   : Center(child: Text("vazio"),)) 
                 ],
@@ -109,12 +114,27 @@ class _HomePageState extends State<HomePage> {
   _body(){
     return TabBarView(
       children: [
-      ListView.builder(
-      itemCount: 1,
-      itemBuilder: (context, index) {
-        return PersonChat();
-        },
-      ),
+      StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection("users").doc(AuthService.to.user!.email).collection(doc.friends.name).snapshots(), 
+      builder: (context, snapshot) {
+        switch(snapshot.connectionState){
+          case ConnectionState.none:
+            case ConnectionState.waiting:
+            return Center(child: CircularProgressIndicator());
+          default:
+            return ListView(
+          children: snapshot.data!.docs
+              .map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                    UserProfile userProfile = UserProfile.fromMap(data);
+                return PersonChat(user: userProfile,);
+              })
+              .toList()
+              .cast(),
+        );
+        }
+      },),
       Text("segunda tela"),
       Text("Terceira Tela")
     ]);
@@ -136,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 20,),
                   ElevatedButton(onPressed: (){
-                    UserController.updateUsername(username.text);
+                    userConttroller.updateUsername(username.text);
                     Navigator.pop(context);
                   }, child: const Text("Change")),
                 ],

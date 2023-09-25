@@ -1,3 +1,4 @@
+import 'package:chat_app/controllers/user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,6 +51,7 @@ class AuthService extends GetxController {
   }
   logOut() async{
      try {
+      UserController.to.userProfile.value = null;
       await _auth.signOut();
     } catch (e) {
       showSnack("erro ao sair", "$e");

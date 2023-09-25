@@ -56,7 +56,7 @@ class LoginController extends GetxController{
   void register() async{
     isLoading.value = true;
     await AuthService.to.createUser(email.text, password.text);
-    await UserController.saveUsers();
+    await UserController.to.saveUsers();
     isLoading.value = false;
   }
 }

@@ -1,8 +1,8 @@
 class Mensage {
   final String mensage;
   final DateTime date;
-  final int fromUser;
-  final int toUser;
+  final String fromUser;
+  final String toUser;
 
   Mensage({
     required this.mensage,
