@@ -19,7 +19,8 @@ class MessageController extends GetxController{
     map.forEach((doc) { 
       final data = doc.data()! as Map<String,dynamic>;
       if((data["fromUser"] == AuthService.to.user!.uid && data["toUser"] == idUser) || (data["toUser"] == AuthService.to.user!.uid && data["fromUser"] == idUser)){       
-          listMessages.add(data);      
+          listMessages.add(data); 
+               
       }
     });
 
