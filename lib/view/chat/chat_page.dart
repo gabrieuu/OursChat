@@ -5,6 +5,7 @@ import 'package:chat_app/model/user.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/view/chat/talk_screen.dart';
 import 'package:chat_app/view/chat/text_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _ChatPageState extends State<ChatPage> {
   // falta id usuário atual
   
   _sendMessage(text){ 
-    final mensagem = Mensage(mensage: text, date: DateTime.now(), fromUser: AuthService.to.user!.uid, toUser: widget.user.id);
+    final mensagem = Mensage(mensage: text, date: Timestamp.now(), fromUser: AuthService.to.user!.uid, toUser: widget.user.id);
     messageController.setData(mensagem);
   }
 

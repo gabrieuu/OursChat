@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Mensage {
   final String mensage;
-  final DateTime date;
+  final Timestamp date;
   final String fromUser;
   final String toUser;
 
@@ -14,7 +16,7 @@ class Mensage {
   Map<String, dynamic> toMap (){
     return {
       "message" : mensage,
-      "date" : date.toIso8601String(),
+      "date" : date,
       "fromUser" : fromUser,
       "toUser" : toUser
     };

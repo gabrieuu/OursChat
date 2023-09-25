@@ -12,7 +12,7 @@ class TalkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection("message").snapshots(), 
+      stream: FirebaseFirestore.instance.collection("message").orderBy('date').snapshots(), 
       builder: (context, snapshot) {
       switch(snapshot.connectionState){
         case ConnectionState.none:

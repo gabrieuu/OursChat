@@ -23,8 +23,7 @@ class MessageController extends GetxController{
                
       }
     });
-
-    return listMessages;
+    return listMessages.reversed.toList();
   }
 
   static MessageController get to => Get.find<MessageController>(); 
