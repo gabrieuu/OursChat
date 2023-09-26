@@ -1,9 +1,5 @@
 import 'package:chat_app/controllers/login_controler.dart';
-import 'package:chat_app/view/home_page.dart';
-import 'package:chat_app/view/sign_in/sign_in.dart';
-import 'package:chat_app/view/sign_in/sign_in_google.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
@@ -31,8 +27,8 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Obx(() => Text(loginController.title.value, style: TextStyle(fontSize: 20),),),
-              SizedBox(height: 20,),
+              Obx(() => Text(loginController.title.value, style: const TextStyle(fontSize: 20),),),
+              const SizedBox(height: 20,),
               TextFormField(
                 validator: (value) => loginController.validarEmail(value),
                 controller: loginController.email,
@@ -48,6 +44,7 @@ class LoginPage extends StatelessWidget {
 
               TextFormField(
                 validator: (value) => loginController.validarSenha(value),
+                obscureText: true,
                 controller: loginController.password,
                 decoration: const InputDecoration(
                   labelText: "Password",
@@ -59,7 +56,7 @@ class LoginPage extends StatelessWidget {
                 height: 25,
               ),
               Obx(() => (loginController.isLoading.value) 
-              ? CircularProgressIndicator() 
+              ? const CircularProgressIndicator() 
               : ElevatedButton(
                 onPressed: () => loginController.validar(),
                 style: ElevatedButton.styleFrom(
@@ -70,15 +67,6 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 25,
               ),
-              const Text("Entre com: "),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const FaIcon(FontAwesomeIcons.google))
-                ],
-              )
             ],
           ),
         ),

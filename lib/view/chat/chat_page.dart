@@ -1,5 +1,4 @@
 import 'package:chat_app/controllers/message_controllers.dart';
-import 'package:chat_app/controllers/user_controller.dart';
 import 'package:chat_app/model/mensage.dart';
 import 'package:chat_app/model/user.dart';
 import 'package:chat_app/services/auth_service.dart';
@@ -12,7 +11,6 @@ class ChatPage extends StatefulWidget {
   ChatPage({super.key, required this.user});
   
   UserProfile user;
-
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
@@ -32,7 +30,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.user.userName),
-        leading: BackButton(),
+        leading: const BackButton(),
         elevation: 1,
       ),
       bottomSheet: TextBar(

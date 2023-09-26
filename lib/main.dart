@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() async{
  await configurations();
-runApp(MyApp()); 
+runApp(const MyApp()); 
 
 }
 
@@ -13,10 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-      title: "OursChat",
-      
+      title: "OursChat",   
       theme: ThemeData(
         useMaterial3: true
       ),
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       
-      home: AuthCheck()
+      home: const AuthCheck()
     );
   }
 }

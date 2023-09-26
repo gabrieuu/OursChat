@@ -53,7 +53,7 @@ class AuthService extends GetxController {
      try {
       UserController.to.userProfile.value = null;
       await _auth.signOut();
-    } catch (e) {
+    } on FirebaseException catch (e) {
       showSnack("erro ao sair", "$e");
     }
   }

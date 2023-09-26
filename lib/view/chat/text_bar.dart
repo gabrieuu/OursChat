@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class TextBar extends StatefulWidget {
 
@@ -38,7 +37,7 @@ class _ChatBarState extends State<TextBar> {
                   _isEnable = false;
                 });
               },
-              decoration: InputDecoration.collapsed(
+              decoration: const InputDecoration.collapsed(
                 hintText: "Digite algo"
               ),
             ),
