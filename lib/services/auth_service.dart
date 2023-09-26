@@ -26,35 +26,40 @@ class AuthService extends GetxController {
   static AuthService get to => Get.find<AuthService>();
 
   void showSnack(String title, String message) {
-    Get.snackbar(
-      title,
-      message,
-      backgroundColor: Colors.red,
-      snackPosition: SnackPosition.BOTTOM,
-    );
+    Get.showSnackbar(
+    GetSnackBar(
+      title: title,
+      message: 'User Registered Successfully',
+      icon: const Icon(Icons.refresh),
+      duration: const Duration(seconds: 3),
+    ),
+);
   }
 
   createUser(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      showSnack("Erro ao criar usuario", "$e");
+    } on FirebaseAuthException catch  (e) {
+      print('Failed with error code: ${e.code}');
+      print(e.message);
     }
   }
 
   signIn(String email, String password) async{
      try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {
-      showSnack("Error in Sign In", "$e");
+    } on FirebaseAuthException catch  (e) {
+      print('Failed with error code: ${e.code}');
+      print(e.message);
     }
   }
   logOut() async{
      try {
       UserController.to.userProfile.value = null;
       await _auth.signOut();
-    } on FirebaseException catch (e) {
-      showSnack("erro ao sair", "$e");
+    } on FirebaseAuthException catch  (e) {
+      print('Failed with error code: ${e.code}');
+      print(e.message);
     }
   }
 }

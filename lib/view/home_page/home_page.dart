@@ -1,8 +1,10 @@
+import 'package:chat_app/controllers/user_controller.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/view/add_friend/add_friend.dart';
 import 'package:chat_app/view/home_page/list_friends.dart';
 import 'package:chat_app/view/home_page/set_username.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,7 +20,7 @@ class _HomePageState extends State<HomePage> {
       length: 3,
       child: Scaffold(
         appBar: _appbar(),
-        body: const ListFriends(),
+        body: Obx(() => (UserController.to.listFriends.isNotEmpty) ? ListFriends() : Center(child: CircularProgressIndicator(),)),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(

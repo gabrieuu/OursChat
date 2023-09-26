@@ -10,8 +10,22 @@ const userCollection = "users";
 class UserController extends GetxController{
   
   Rx<UserProfile?> userProfile = Rx<UserProfile?>(null); 
+  final FirebaseFirestore _firestore = DBFirestore.get();
+  var listFriends = [{}].obs;
 
-  var listFriends = [].obs;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+
+    _firestore.collection("users").doc(AuthService.to.user!.email).collection("friends").snapshots().listen((query){
+      listFriends.clear();
+      for (var doc in query.docs) {
+        listFriends.add(doc.data());
+       }
+    });
+
+  }
 
    Future<void> saveUsers() async{
     FirebaseFirestore db = await DBFirestore.get();

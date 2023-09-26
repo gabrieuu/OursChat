@@ -4,7 +4,7 @@ class UserProfile {
 
   UserProfile({required this.userName, required this.id});
 
-  static fromMap(Map<String, dynamic> map) {
+  static fromMap(Map<dynamic, dynamic> map) {
     return UserProfile(
       userName: map["username"],
       id: map["id"],
