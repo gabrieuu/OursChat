@@ -55,7 +55,6 @@ class AuthService extends GetxController {
   }
   logOut() async{
      try {
-      UserController.to.userProfile.value = null;
       await _auth.signOut();
     } on FirebaseAuthException catch  (e) {
       print('Failed with error code: ${e.code}');

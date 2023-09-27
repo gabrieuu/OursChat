@@ -11,19 +11,14 @@ class UserController extends GetxController{
   
   Rx<UserProfile?> userProfile = Rx<UserProfile?>(null); 
   final FirebaseFirestore _firestore = DBFirestore.get();
-  var listFriends = [{}].obs;
+  RxList<UserProfile> listFriends = RxList<UserProfile>([]);
+  var isLoading = false.obs;
 
   @override
-  void onInit() {
-    // TODO: implement onInit
+  void onInit() async{
     super.onInit();
-
-    _firestore.collection("users").doc(AuthService.to.user!.email).collection("friends").snapshots().listen((query){
-      listFriends.clear();
-      for (var doc in query.docs) {
-        listFriends.add(doc.data());
-       }
-    });
+    
+    await getFriends();
 
   }
 
@@ -50,19 +45,21 @@ class UserController extends GetxController{
       userProfile.value = UserProfile.fromMap(data);
     });
   }
-
-  getFriends() async{
-    FirebaseFirestore db = await DBFirestore.get();
-    db.collection(userCollection).doc(AuthService.to.user!.email).snapshots().listen((user) {
-      listFriends = user.data()![doc.friends.name];
-    });
-  }
-
   adicionarAmigo(UserProfile user) async{
     FirebaseFirestore db = await DBFirestore.get();
     db.collection(userCollection).doc(AuthService.to.user!.email!).collection("friends").add({
       doc.username.name : user.userName,
       doc.id.name : user.id,
+    });
+    await getFriends();
+  }
+
+  Future<void> getFriends() async{
+    _firestore.collection("users").doc(AuthService.to.user!.email).collection("friends").snapshots().listen((query){
+          listFriends.clear();
+          for (var doc in query.docs) {
+            listFriends.add(UserProfile.fromMap(doc.data()));
+          }
     });
   }
 
