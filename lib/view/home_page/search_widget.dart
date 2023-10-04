@@ -6,7 +6,7 @@ class SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.only(left:30, right: 30, top: 80),
               child: Container(
                 padding: const EdgeInsets.all(5),
                 width: MediaQuery.of(context).size.width,

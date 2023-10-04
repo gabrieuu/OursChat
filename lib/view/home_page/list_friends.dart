@@ -13,7 +13,6 @@ class ListFriends extends StatelessWidget {
   Widget build(BuildContext context) {
     return 
       ListView.builder(
-        physics: const AlwaysScrollableScrollPhysics(),
         itemCount: UserController.to.listFriends.length,
         itemBuilder: (_, index) {
           return Obx(() => PersonChat(user: UserController.to.listFriends[index]));
