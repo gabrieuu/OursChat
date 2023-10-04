@@ -1,16 +1,27 @@
-# chat_app
 
-A new Flutter project.
+# 📱 Aplicativo de tempo 
 
-## Getting Started
+O ChatConnect é um aplicativo de chat online que permite que os usuários se conectem com amigos, familiares e até mesmo façam novos amigos em todo o mundo. Ele oferece uma experiência de chat segura e conveniente, com uma variedade de recursos para tornar a comunicação mais personalizada.
 
-This project is a starting point for a Flutter application.
+# ⚙️ O que foi utilizado no projeto?:
 
-A few resources to get you started if this is your first Flutter project:
+<ul>
+  <li><b>Firebase Firestore</b> para banco de dados</li>
+  <li><b>Getx</b> para gerenciammento de estado e rotas</li>
+  <li><b>Firebase Auth</b> para autenticação do usuário</li>
+</ul>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📸 Layout
+
+![ourschat](https://github.com/gabrieuu/OursChat/assets/81256082/56123634-87d2-422c-acad-a7e5d9e8102a)
+
+
+## ✨ Requirements
+* Qualquer sistema operacional (ie. MacOS X, Linux, Windows)
+* Qualquer IDE com o SDK do Flutter instalado (IntelliJ, Android Studio, VSCode etc)
+* Um pequeno conhecimento de Dart e Flutter
+
+
+## 🤓 Author
+**Gabriel Barbosa da silva** 
