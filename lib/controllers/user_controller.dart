@@ -35,6 +35,7 @@ class UserController extends GetxController{
     db.collection(userCollection).doc(AuthService.to.user!.email!).update({
       doc.username.name : newUsername
     });
+    await getFriends();
   }
 
   getUserByEmail(String userEmail) async{
@@ -45,10 +46,23 @@ class UserController extends GetxController{
       userProfile.value = UserProfile.fromMap(data);
     });
   }
+  UserProfile? getUserById(String id){
+    UserProfile? userEncontrado;
+    
+    FirebaseFirestore db = DBFirestore.get();
+    db.collection(userCollection).get().then((snapshot) => {
+      snapshot.docs.forEach((data) { 
+        if(data.data()["id"] == id){
+          userEncontrado = UserProfile.fromMap(data.data());
+        }
+      })
+    });
+    return userEncontrado;
+  }
+
   adicionarAmigo(UserProfile user) async{
     FirebaseFirestore db = await DBFirestore.get();
     db.collection(userCollection).doc(AuthService.to.user!.email!).collection("friends").add({
-      doc.username.name : user.userName,
       doc.id.name : user.id,
     });
     await getFriends();

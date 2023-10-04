@@ -1,4 +1,4 @@
-import 'package:chat_app/controllers/message_controllers.dart';
+import 'package:chat_app/controllers/message_controller.dart';
 import 'package:chat_app/controllers/user_controller.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/services/auth_service.dart';

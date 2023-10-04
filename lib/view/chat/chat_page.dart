@@ -1,4 +1,4 @@
-import 'package:chat_app/controllers/message_controllers.dart';
+import 'package:chat_app/controllers/message_controller.dart';
 import 'package:chat_app/model/mensage.dart';
 import 'package:chat_app/model/user.dart';
 import 'package:chat_app/services/auth_service.dart';

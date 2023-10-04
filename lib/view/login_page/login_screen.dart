@@ -1,4 +1,4 @@
-import 'package:chat_app/controllers/login_controler.dart';
+import 'package:chat_app/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

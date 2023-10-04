@@ -11,17 +11,13 @@ class ListFriends extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(
-      children: [
+    return 
       ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
         itemCount: UserController.to.listFriends.length,
         itemBuilder: (_, index) {
           return Obx(() => PersonChat(user: UserController.to.listFriends[index]));
         },
-        ),
-      const Text("segunda tela"),
-      const Text("Terceira Tela")
-    ]);
+        );
   }
 }

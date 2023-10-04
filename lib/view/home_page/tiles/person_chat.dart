@@ -1,4 +1,4 @@
-import 'package:chat_app/controllers/message_controllers.dart';
+import 'package:chat_app/controllers/message_controller.dart';
 import 'package:chat_app/model/user.dart';
 import 'package:chat_app/view/chat/chat_page.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +12,7 @@ class PersonChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 30),
       onTap: () {
         Navigator.push(
             context,
@@ -20,14 +21,13 @@ class PersonChat extends StatelessWidget {
             ));
       },
       onLongPress: () {
-        print("${MessageController.to.listMessages}");
+        
       },
-      leading: ClipOval(
-        child: Image.asset(
-          'assets/images/gatinho.jpg',
-          width: 45,
-          height: 45,
-        ),
+      leading: CircleAvatar(
+        radius: 25,
+        //backgroundImage: AssetImage('assets/images/gatinho.jpg'),
+        backgroundColor: Colors.blue,
+        child: Text(user.userName[0].toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
       ),
       title: Text(
         user.userName,

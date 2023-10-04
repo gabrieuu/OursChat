@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "OursChat",   
       theme: ThemeData(
-        useMaterial3: true
+        useMaterial3: true,
+        primaryColor: const Color.fromRGBO(62, 102, 251, 1),
+        iconTheme: IconThemeData(color: Color.fromRGBO(0, 28, 56, 1))
       ),
       darkTheme: ThemeData.dark(
         useMaterial3: true

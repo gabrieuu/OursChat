@@ -1,4 +1,4 @@
-import 'package:chat_app/controllers/message_controllers.dart';
+import 'package:chat_app/controllers/message_controller.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +32,11 @@ class TalkScreen extends StatelessWidget {
                         alignment: (data["fromUser"] == AuthService.to.user!.uid) ? Alignment.centerRight : Alignment.centerLeft,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: (data["fromUser"] == AuthService.to.user!.uid) ? Colors.grey.shade200:Colors.blue[200],
+                            color: (data["fromUser"] == AuthService.to.user!.uid) ? Colors.grey.shade200:Color.fromRGBO(62, 102, 251, 1),
                             borderRadius: BorderRadius.circular(10),                     
                           ),
                           padding: const EdgeInsets.all(16),
-                          child: Text(data["message"], style: TextStyle(color: (data["fromUser"] == AuthService.to.user!.uid) ? Colors.black : Colors.black),),
+                          child: Text(data["message"], style: TextStyle(color: (data["fromUser"] == AuthService.to.user!.uid) ? Colors.black : Colors.white),),
                         ),
                       ),                    
                       

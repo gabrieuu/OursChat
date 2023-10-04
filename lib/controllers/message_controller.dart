@@ -23,9 +23,7 @@ class MessageController extends GetxController{
        }
     });
 
-    }
-    
-
+    }   
   }
 
 
