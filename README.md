@@ -1,7 +1,7 @@
 
-# 📱 Aplicativo de tempo 
+# 📱 OursChat 
 
-O ChatConnect é um aplicativo de chat online que permite que os usuários se conectem com amigos, familiares e até mesmo façam novos amigos em todo o mundo. Ele oferece uma experiência de chat segura e conveniente, com uma variedade de recursos para tornar a comunicação mais personalizada.
+O OursChat é um aplicativo de chat online que permite que os usuários se conectem com amigos, familiares e até mesmo façam novos amigos em todo o mundo. Ele oferece uma experiência de chat segura e conveniente, com uma variedade de recursos para tornar a comunicação mais personalizada.
 
 # ⚙️ O que foi utilizado no projeto?:
 
